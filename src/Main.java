@@ -1,42 +1,61 @@
 import java.util.Scanner;
-
+import java.util.Base64;
 public class Main {
     public static void main(String[] args) {
+        boolean dev_mode = false;
         Scanner scan = new Scanner(System.in);
         int health = 100;
-        int justin_hp = 1;
+        int justin_hp = 100;
         System.out.println("This is a short adventure game");
         System.out.println("Type and enter anything to start \n");
         String start_string = scan.nextLine();
         System.out.print("What's your name? ");
         String name_var = scan.nextLine();
-        System.out.println("Welcome to my game, " + name_var);
+        String base64 = Base64.getUrlEncoder().encodeToString(name_var.getBytes());
+        if (base64.equals("ZGV2ZWxvcGVyX21vZGVfZW5hYmxlZA==")){
+            System.out.println("Developer Mode Enabled, 9999 health activated");
+            health = 999;
+            dev_mode = true;
+        }
+else {
+    System.out.println("Welcome to my game " + name_var);
+        }
+
 
         System.out.println("You find yourself at 50 Chayna Crescent. What do you do?");
         System.out.println("1. Yell for Preston Baichoo\n2. Yell for Om Rathee\n3. Yell for Justin Baichoo");
         System.out.print("What is your choice? ");
         int choice1 = scan.nextInt();
         scan.nextLine();
+
         if (choice1 == 2){
-            System.out.println("Om is chill and gives you some chicken briyani");
+            System.out.println("Om is chill and gives you some chicken curry");
         }
+
+
         if (choice1 == 3){
             System.out.println("justin baichoo sues you for calling his name disrespectfully and you are out of 12 billion dollars because he is the best lawyer to live, then he pulls out da glock and shoots him");
         }
+
         if (choice1 == 1) {
             System.out.println("Preston yells at you to get out before his dad gets here");
             System.out.println("What do you do? (run or stay)");
             String choice1_1 = scan.nextLine();
-
             if (choice1_1.equals("run")) {
                 System.out.println("You ran from big Baichoo");
                 System.out.println("Big baichoo pulls out da glock and shoots you");
             } else {
                 System.out.println("A FIGHT HAS BEEN STARTED");
-                System.out.print(name_var + " vs. JUSTIN BAICHOO!");
-                System.out.println("It's your turn. Type \"hit\" to hit, or \"run\" to run");
-                String choice1_1_1 = scan.nextLine();
+                if (dev_mode == true){
+                    System.out.println("DEVELOPER VS JUSTIN BAICHOO");
+                    System.out.println("It's your turn. Type \"hit\" to hit, or \"run\" to run");
+                }
+                else {
+                    System.out.print(name_var + " vs. JUSTIN BAICHOO!");
+                    System.out.println("It's your turn. Type \"hit\" to hit, or \"run\" to run");
+                }
 
+                String choice1_1_1 = scan.nextLine();
                 if (choice1_1_1.equals("run")) {
                     System.out.println("You ran from big Baichoo");
                 } else if (choice1_1_1.equals("hit")) {
